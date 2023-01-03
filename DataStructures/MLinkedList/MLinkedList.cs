@@ -17,7 +17,7 @@ public class MLinkedList<T>
         Count++;
     }
     
-    public int Add(T value)
+    public int Add(T value) // O(1) 
     {
         if (_head is null)
         {
@@ -33,7 +33,7 @@ public class MLinkedList<T>
         return Count;
     }
 
-    public Node<T> Find(T value)
+    public Node<T> Find(T value) // O(n) + Boxing
     {
         if (_head is null)
         {
@@ -57,7 +57,7 @@ public class MLinkedList<T>
         return resultingNode;
     }
 
-    private Node<T> ReverseSearch(Node<T> currentNode, T value)
+    private Node<T> ReverseSearch(Node<T> currentNode, T value) // O(n) + Boxing
     {
         currentNode = currentNode.NextNode;
         if (currentNode.Value.Equals(value))
@@ -71,12 +71,12 @@ public class MLinkedList<T>
         throw new DoesNotContainException(value, "There is no such value");
     }
 
-    public T Get(int index)
+    public T Get(int index) // O(n)
     {
         return GetNode(index).Value;
     }
     
-    private Node<T> GetNode(int index)
+    private Node<T> GetNode(int index) // O(n)
     {
         if (_head is null) throw new EmptyException("There are no nodes yet");
         
@@ -96,7 +96,7 @@ public class MLinkedList<T>
         return currentNode;
     }
     
-    private Node<T> GetPreviousNode(int index)
+    private Node<T> GetPreviousNode(int index) // O(n)
     {
         if (index < 0) index = NegativeToPositiveIndex(index);
         Node<T> currentNode = _head;
@@ -109,7 +109,7 @@ public class MLinkedList<T>
         return currentNode;
     }
 
-    public void Insert(int index, T value)
+    public void Insert(int index, T value) // O(n)
     {
         if (index < 0) index = NegativeToPositiveIndex(index);
         if (index >= Count) throw new IndexOutOfRangeException();
@@ -131,12 +131,12 @@ public class MLinkedList<T>
         Count++;
     }
 
-    private int NegativeToPositiveIndex(int index)
+    private int NegativeToPositiveIndex(int index) // O(1)
     {
         return Count + index;
     }
 
-    public T Delete(int index)
+    public T Delete(int index) // O(n)
     {
         if (index < 0) index = NegativeToPositiveIndex(index);
         if (index >= Count) throw new IndexOutOfRangeException();
