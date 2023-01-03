@@ -73,11 +73,16 @@ public class MLinkedList<T>
 
     public T Get(int index)
     {
+        return GetNode(index).Value;
+    }
+    
+    private Node<T> GetNode(int index)
+    {
         if (_head is null) throw new EmptyException("There are no nodes yet");
         
         if (index >= Count) throw new IndexOutOfRangeException();
         
-        if (Count == 0) return _head.Value;
+        if (Count == 0) return _head;
 
         Node<T> currentNode = _head;
         
@@ -86,18 +91,22 @@ public class MLinkedList<T>
             currentNode = currentNode.NextNode;
         }
 
-        return currentNode.Value;
+        return currentNode;
     }
 
     public void Insert(int index, T value)
     {
         if (index >= Count) throw new IndexOutOfRangeException();
         var currentNode = _head;
+        var newNode = new Node<T>(value);
         if (index == 0)
         {
-            var newNode = new Node<T>(value);
             newNode.NextNode = currentNode;
             _head = newNode;
+        }
+        else
+        {
+            throw new NotImplementedException();
         }
     }
 }
