@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace DataStructures;
+namespace DataStructures.MStack;
 
 public class MStackTests
 {

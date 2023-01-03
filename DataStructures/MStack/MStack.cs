@@ -1,4 +1,4 @@
-namespace DataStructures;
+namespace DataStructures.MStack;
 
 public class MStack <T>
 {
