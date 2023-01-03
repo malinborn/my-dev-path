@@ -204,4 +204,52 @@ public class MLinkedListTests
         
         Assert.Equal("Test1", sut.Get(-3));
     }
+
+    [Fact]
+    public void WhenDeleteSingleValue_ShouldDeleteHead()
+    {
+        var sut = new MLinkedList<string>("Hello");
+
+        sut.Delete(0);
+        
+        Assert.Equal(0, sut.Count);
+    }
+
+    [Fact]
+    public void WhenDeleteLastValue_ShouldReduceCountByOne()
+    {
+        var sut = new MLinkedList<string>("Hello");
+        sut.Add("World");
+        sut.Add("!!!");
+
+        sut.Delete(-1);
+        
+        Assert.Equal(2, sut.Count);
+    }
+    
+    [Fact]
+    public void WhenDeleteLastValue_ShouldReturnPreLastValue()
+    {
+        var sut = new MLinkedList<string>("Hello");
+        sut.Add("World");
+        sut.Add("!!!");
+
+        sut.Delete(-1);
+        
+        Assert.Equal("World", sut.Get(-1));
+    }
+    
+    [Fact]
+    public void WhenDeleteValueFromTheMiddle_ShouldReturnItsValue()
+    {
+        var sut = new MLinkedList<string>("Zero");
+        sut.Add("One");
+        sut.Add("Two");
+        sut.Add("Three");
+        sut.Add("Four");
+
+        var resulting = sut.Delete(2);
+        
+        Assert.Equal("Two", resulting);
+    }
 }

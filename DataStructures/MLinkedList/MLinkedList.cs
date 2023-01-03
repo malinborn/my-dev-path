@@ -135,4 +135,22 @@ public class MLinkedList<T>
     {
         return Count + index;
     }
+
+    public T Delete(int index)
+    {
+        if (index < 0) index = NegativeToPositiveIndex(index);
+        if (index == 0)
+        {
+            var headValue = _head.Value;
+            _head = _head.NextNode;
+            Count--;
+            return headValue;
+        }
+        var previousNode = GetPreviousNode(index); 
+        var currentNode = previousNode.NextNode; 
+        var currentNodeValue = currentNode.Value; 
+        previousNode.NextNode = currentNode.NextNode;
+        Count--;
+        return currentNodeValue;
+    }
 }
