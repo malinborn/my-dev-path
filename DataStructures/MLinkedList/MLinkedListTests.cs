@@ -182,4 +182,26 @@ public class MLinkedListTests
         Assert.Equal("Hello!", sut.Get(2));
         Assert.Equal("Test3", sut.Get(3));
     }
+    
+    [Fact]
+    public void WhenIssuingLastIndexWithNegative_ShouldReturnLastObject()
+    {
+        var sut = new MLinkedList<string>();
+        sut.Add("Test1");
+        sut.Add("Test2");
+        sut.Add("Test3");
+
+        Assert.Equal("Test3", sut.Get(-1));
+    }
+    
+    [Fact]
+    public void WhenIssuingFirstIndexWithNegative_ShouldReturnFirstObject()
+    {
+        var sut = new MLinkedList<string>();
+        sut.Add("Test1");
+        sut.Add("Test2");
+        sut.Add("Test3");
+        
+        Assert.Equal("Test1", sut.Get(-3));
+    }
 }

@@ -80,6 +80,8 @@ public class MLinkedList<T>
     {
         if (_head is null) throw new EmptyException("There are no nodes yet");
         
+        if (index < 0) index = NegativeToPositiveIndex(index);
+        
         if (index >= Count) throw new IndexOutOfRangeException();
         
         if (Count == 0) return _head;
@@ -96,6 +98,7 @@ public class MLinkedList<T>
     
     private Node<T> GetPreviousNode(int index)
     {
+        if (index < 0) index = NegativeToPositiveIndex(index);
         Node<T> currentNode = _head;
         
         for (int i = 0; i < index - 1; i++)
@@ -108,6 +111,7 @@ public class MLinkedList<T>
 
     public void Insert(int index, T value)
     {
+        if (index < 0) index = NegativeToPositiveIndex(index);
         if (index >= Count) throw new IndexOutOfRangeException();
         
         var newNode = new Node<T>(value);
@@ -125,5 +129,10 @@ public class MLinkedList<T>
         previousNode.NextNode = newNode;
         newNode.NextNode = currentNode;
         Count++;
+    }
+
+    private int NegativeToPositiveIndex(int index)
+    {
+        return Count + index;
     }
 }
