@@ -75,7 +75,7 @@ public class MLinkedList<T>
     {
         if (_head is null) throw new EmptyException("There are no nodes yet");
         
-        if (index > Count - 1) throw new IndexOutOfRangeException();
+        if (index >= Count) throw new IndexOutOfRangeException();
         
         if (Count == 0) return _head.Value;
 
@@ -87,5 +87,17 @@ public class MLinkedList<T>
         }
 
         return currentNode.Value;
+    }
+
+    public void Insert(int index, T value)
+    {
+        if (index >= Count) throw new IndexOutOfRangeException();
+        var currentNode = _head;
+        if (index == 0)
+        {
+            var newNode = new Node<T>(value);
+            newNode.NextNode = currentNode;
+            _head = newNode;
+        }
     }
 }

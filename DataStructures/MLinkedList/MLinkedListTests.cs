@@ -1,3 +1,4 @@
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.Utilities;
 using Xunit;
 using Xunit.Sdk;
 
@@ -102,5 +103,15 @@ public class MLinkedListTests
         {
             sut.Get(9);
         });
+    }
+
+    [Fact]
+    public void WhenInsertValueInto0Index_ShouldBecomeHeadAndShiftHeadToIndex1()
+    {
+        var sut = new MLinkedList<string>("World!");
+        
+        sut.Insert(0, "Hello");
+        
+        Assert.Equal("Hello", sut.Get(0));
     }
 }
