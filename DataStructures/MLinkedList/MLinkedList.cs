@@ -139,6 +139,7 @@ public class MLinkedList<T>
     public T Delete(int index)
     {
         if (index < 0) index = NegativeToPositiveIndex(index);
+        if (index >= Count) throw new IndexOutOfRangeException();
         if (index == 0)
         {
             var headValue = _head.Value;
