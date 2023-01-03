@@ -103,10 +103,20 @@ public class MLinkedList<T>
         {
             newNode.NextNode = currentNode;
             _head = newNode;
+            Count++;
+            return;
         }
-        else
+        if (index == 1)
         {
-            throw new NotImplementedException();
+            newNode.NextNode = _head.NextNode;
+            _head.NextNode = newNode;
+            Count++;
+            return;
         }
+        // for (int i = 0; i < index; i++)
+        // {
+        //     currentNode = currentNode.NextNode;
+        // }
+        
     }
 }

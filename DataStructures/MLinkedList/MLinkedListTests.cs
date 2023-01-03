@@ -113,5 +113,34 @@ public class MLinkedListTests
         sut.Insert(0, "Hello");
         
         Assert.Equal("Hello", sut.Get(0));
+        Assert.Equal("World!", sut.Get(1));
+    }
+    
+    [Fact]
+    public void WhenInsertValueInto1Index_ShouldBecome1AndShiftIndex1ToIndex2()
+    {
+        var sut = new MLinkedList<string>("Zero");
+        sut.Add("One");
+        sut.Add("Two");
+
+        sut.Insert(1, "Hello World!");
+        
+        Assert.Equal("Hello World!", sut.Get(1));
+        Assert.Equal("One", sut.Get(2));
+    }
+    
+    [Fact]
+    public void WhenInsertValueInto4Index_ShouldBecome4AndShiftIndex1ToIndex5()
+    {
+        var sut = new MLinkedList<string>("Zero");
+        sut.Add("One");
+        sut.Add("Two");
+        sut.Add("Three");
+        sut.Add("Four");
+        sut.Add("Five");
+
+        sut.Insert(4, "Hello World!");
+        
+        Assert.Equal("Hello World!", sut.Get(4));
     }
 }
