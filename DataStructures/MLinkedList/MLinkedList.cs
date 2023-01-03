@@ -93,30 +93,37 @@ public class MLinkedList<T>
 
         return currentNode;
     }
+    
+    private Node<T> GetPreviousNode(int index)
+    {
+        Node<T> currentNode = _head;
+        
+        for (int i = 0; i < index - 1; i++)
+        {
+            currentNode = currentNode.NextNode;
+        }
+
+        return currentNode;
+    }
 
     public void Insert(int index, T value)
     {
         if (index >= Count) throw new IndexOutOfRangeException();
-        var currentNode = _head;
+        
         var newNode = new Node<T>(value);
+        
         if (index == 0)
         {
-            newNode.NextNode = currentNode;
+            newNode.NextNode = _head;
             _head = newNode;
             Count++;
             return;
         }
-        if (index == 1)
-        {
-            newNode.NextNode = _head.NextNode;
-            _head.NextNode = newNode;
-            Count++;
-            return;
-        }
-        // for (int i = 0; i < index; i++)
-        // {
-        //     currentNode = currentNode.NextNode;
-        // }
         
+        var previousNode = GetPreviousNode(index);
+        var currentNode = previousNode.NextNode;
+        previousNode.NextNode = newNode;
+        newNode.NextNode = currentNode;
+        Count++;
     }
 }

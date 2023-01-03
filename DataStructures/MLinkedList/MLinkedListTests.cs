@@ -139,8 +139,47 @@ public class MLinkedListTests
         sut.Add("Four");
         sut.Add("Five");
 
-        sut.Insert(4, "Hello World!");
+        sut.Insert(3, "Hello World!");
         
-        Assert.Equal("Hello World!", sut.Get(4));
+        Assert.Equal("Hello World!", sut.Get(3));
+        Assert.Equal("Three", sut.Get(4));
+    }
+
+    [Fact]
+    public void WhenInsertingOverListLength_ShouldThrowException()
+    {
+        var sut = new MLinkedList<string>();
+        sut.Add("Hello!");
+
+        Assert.Throws<IndexOutOfRangeException>(() =>
+        {
+            sut.Insert(9, "Test");
+        });
+    }
+    
+    [Fact]
+    public void WhenInsertingIntoEmptyList_ShouldThrowException()
+    {
+        var sut = new MLinkedList<string>();
+        sut.Add("Hello!");
+
+        Assert.Throws<IndexOutOfRangeException>(() =>
+        {
+            sut.Insert(9, "Test");
+        });
+    }
+
+    [Fact]
+    public void WhenInsertingIntoLastIndex_ShouldShiftLastIntoNewLastAndBecomePreLast()
+    {
+        var sut = new MLinkedList<string>();
+        sut.Add("Test1");
+        sut.Add("Test2");
+        sut.Add("Test3");
+        
+        sut.Insert(2, "Hello!");
+        
+        Assert.Equal("Hello!", sut.Get(2));
+        Assert.Equal("Test3", sut.Get(3));
     }
 }
