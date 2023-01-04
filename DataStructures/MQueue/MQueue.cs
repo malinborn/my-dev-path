@@ -5,16 +5,8 @@ public class MQueue<T>
     public Node<T> Head { get; set; }
     public Node<T> Rear { get; set; }
     public int Count { get; set; }
-
-    public MQueue() { }
-
-    public MQueue(T value)
-    {
-        Head = new Node<T>(value);
-        Count++;
-    }
-
-    public void Enqueue(T value)
+    
+    public void Enqueue(T value) // O(1)
     {
         if (Count == 0)
         {
