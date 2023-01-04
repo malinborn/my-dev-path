@@ -16,6 +16,10 @@ public class MQueue<T>
 
     public void Enqueue(T value)
     {
+        if (Count == 0)
+        {
+            Head = new Node<T>(value);
+        }
         
     }
 
