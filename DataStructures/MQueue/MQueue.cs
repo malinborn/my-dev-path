@@ -29,7 +29,7 @@ public class MQueue<T>
         return this;
     }
 
-    public T Dequeue()
+    public T Dequeue() // O(1)
     {
         if (Count == 0) throw new EmptyException("There are no values yet");
 
@@ -46,5 +46,12 @@ public class MQueue<T>
 
         Count--;
         return resulting;
+    }
+
+    public void Clear()
+    {
+        Head = null;
+        Rear = null;
+        Count = 0;
     }
 }

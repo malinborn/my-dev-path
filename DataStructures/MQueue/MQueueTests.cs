@@ -68,4 +68,34 @@ public class MQueueTests
     
         Assert.Equal("Hello!", result);
     }
+
+    [Fact]
+    public void WhenDequeueing2Values_ShouldMoveThirdValueToHead()
+    {
+        var sut = new MQueue<string>()
+            .Enqueue("Zero")
+            .Enqueue("One")
+            .Enqueue("Two")
+            .Enqueue("Three")
+            .Enqueue("Four");
+
+        sut.Dequeue();
+        sut.Dequeue();
+        var result = sut.Dequeue();
+        
+        Assert.Equal("Two", result);
+    }
+    
+    [Fact]
+    public void WhenCallingClearMethod_ShouldMakeCount0()
+    {
+        var sut = new MQueue<string>()
+            .Enqueue("Zero")
+            .Enqueue("One")
+            .Enqueue("Two");
+
+        sut.Clear();
+        
+        Assert.Equal(0, sut.Count);
+    }
 }
