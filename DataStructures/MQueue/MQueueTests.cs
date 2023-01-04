@@ -13,4 +13,26 @@ public class MQueueTests
         
         Assert.Equal("Hello", sut.Head.Value);
     }
+
+    [Fact]
+    public void WhenQueueWithSingleValueEnqueued_ShouldMoveHeadToRear()
+    {
+        var sut = new MQueue<string>();
+        sut.Enqueue("World");
+        
+        sut.Enqueue("Hello");
+        
+        Assert.Equal("World", sut.Rear.Value);
+    }
+    
+    [Fact]
+    public void WhenQueueWithSingleValueEnqueued_ShouldMakeNewHead()
+    {
+        var sut = new MQueue<string>();
+        sut.Enqueue("World");
+        
+        sut.Enqueue("Hello");
+        
+        Assert.Equal("Hello", sut.Head.Value);
+    }
 }
