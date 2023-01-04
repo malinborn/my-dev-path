@@ -18,18 +18,18 @@ public class MQueue<T>
     {
         if (Count == 0)
         {
-            Head = new Node<T>(value);
-            Count++;
-            return;
+            var newNode = new Node<T>(value);
+            Rear = newNode;
+            Head = newNode;
+            
         }
-
-        if (Count == 1)
+        else
         {
             var newNode = new Node<T>(value);
-            newNode.NextNode = Head;
-            Rear = Head;
-            Head = newNode;
+            Rear.NextNode = newNode;
+            Rear = newNode;
         }
+        Count++;
     }
 
     public void Dequeue(T value)
