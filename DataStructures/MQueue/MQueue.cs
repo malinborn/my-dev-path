@@ -48,7 +48,7 @@ public class MQueue<T>
         return resulting;
     }
 
-    public void Clear()
+    public void Clear() // O(1) 
     {
         Head = null;
         Rear = null;
