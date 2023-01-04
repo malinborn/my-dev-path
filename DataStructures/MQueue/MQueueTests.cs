@@ -57,4 +57,15 @@ public class MQueueTests
         
         Assert.Equal("Test3", sut.Rear.Value);
     }
+
+    [Fact]
+    public void WhenQueueWithSingleValueDequeued_ShouldReturnThisValue()
+    {
+        var sut = new MQueue<string>();
+        sut.Enqueue("Hello!");
+        
+        var result = sut.Dequeue();
+    
+        Assert.Equal("Hello!", result);
+    }
 }
